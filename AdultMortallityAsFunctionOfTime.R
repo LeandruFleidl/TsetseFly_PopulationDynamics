@@ -54,7 +54,21 @@ amFunctFit = function(params, dat = b.A_mortality){
 adult_mortalityFit = nls.lm(par = c(a1 = 0.01, a2 = 0.06),  fn = amFunctFit)
 
 #5 Store the paramaters we found for later use
-amParams = summarise(adult_mortalityFit)
+amParams = summary(adult_mortalityFit)
 a1 = coef(adult_mortalityFit)[1]
 a2 = coef(adult_mortalityFit)[2]
+
+#6 Now we put the predicted values of the mortality into a data frame
+adult_mortality.Predicted = sapply(seq(15, 34, 0.01), function(x){
+                                          adult_mortalityFunc(con.a1 = a1
+                                                              ,con.a2 = a2
+                                                              ,x)
+                                                        })
+adult_mortality.Predicted = cbind.data.frame(temp = seq(15, 34, 0.01), 
+                                      Predicted = adult_mortality.Predicted)
+#7 Finally we can add it to the real value plot
+plotFit = aMortplot +
+          geom_line(data = adult_mortality.Predicted,
+                          mapping = aes(x = temp, y = Predicted))
+plotFit
 
