@@ -10,7 +10,9 @@ however the majority of the work I have done is simply to better understand the 
 CountAndTemp.R reads in the temperature data and the tsetse fly count and combines them into
 a useful database.
 
-AdultMortalityAsFunctionOfTime.R reads in adult mortality data and plots it along with the predicted mortality as a function of time.
+AdultMortalityAsFunctionOfTime.R reads in adult mortality data and plots it along with the predicted mortality as a function of temp.
 
 LarvipostionAsFunctionOfTime.R Reads in larviposition data and plots it along with the predicted
-larviposition as a function of time.
+larviposition as a function of temp.
+
+PupalDurationAsAfunctionOfTime.R Reads in pupal duration data and and plots it along with the predicted pupal duration as a function of temp.
