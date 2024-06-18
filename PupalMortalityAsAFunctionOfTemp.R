@@ -37,4 +37,36 @@ pupal.mortalityPlot = ggplot(d.pupal.mortality, aes(x = temp, y = instant.mort))
                           , plot.margin = unit(c(0.4, 0.2, 0.2, 0.1), "cm")
                           , axis.text = element_text(size = 8))
 pupal.mortalityPlot
-                                         
+
+#6 Create temp dependent function
+pmFunc = function(b1, b2, b3, b4, b5, T1 = 16
+                  , T2 = 32, temp){
+  pred.mort = b1 + b2*exp(-(b3*(temp - T1))) + b4*exp(b5*(temp - T2))
+  return(pred.mort)
+}
+
+#7 Fit function with nonlinear least square regression
+pupal.mortalityFit = nls(instant.mort ~ b1 + b2*exp(-(b3*(temp-16))) + b4*exp(b5*(temp-32))
+                         ,data=d.pupal.mortality
+                         ,start=list(b1=0.002, b2=0.005, b3=1.5, b4=0.03, b5=1.2)
+                         ,trace=T)
+pmfsum = summary(pupal.mortalityFit)
+pmfsum
+
+#8 Save coefficients for use in time dependent function
+b1 = coef(pmfsum)[1]
+b2 = coef(pmfsum)[2]
+b3 = coef(pmfsum)[3]
+b4 = coef(pmfsum)[4]
+b5 = coef(pmfsum)[5]
+
+#9 Calculate the predicted values
+pupal.mortality.pred = pmFunc(b1 = b1, b2 = b2, b3 = b3
+                            , b4 = b4, b5 = b5, temp = seq(14, 35, 0.1))
+pupal.mortality.pred = cbind.data.frame(temp = seq(14, 35, 0.1), pred = pupal.mortality.pred)
+
+#10 Add predicted values to plot
+predPlot = pupal.mortalityPlot +
+          geom_line(data = pupal.mortality.pred
+                  , mapping = aes(x = temp, y = pred))
+predPlot
