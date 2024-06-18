@@ -18,3 +18,5 @@ larviposition as a function of temp.
 PupalDurationAsAfunctionOfTemp.R Reads in pupal duration data and and plots it along with the predicted pupal duration as a function of temp.
 
 PupalMortalityAsAFunctionOfTemp.R Reads in pupal mortality data and sets up a instant pupal mortality compared to temp data base, we then plot this with a predicted pupal mortality rate as a function of time.
+
+FunctionsUsedForModdeling.R A likelihood function used to get the best matching values for a1, a2, b1, b2, b3, b4, and b5. 
