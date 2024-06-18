@@ -28,3 +28,18 @@ likelihood.pois = function(parms = tstetse_params(), data = temp.fly_count){
   }
   return(-like)
 }
+# function to fit and substitute the parameters back into list
+subsParm = function(fitparams, fixed.params = tsetse_params()) {
+  within(fixed.params, {
+    loggedParms = names(fitparams)[grepl('log_', names(fitparams))]
+    unloggedParms = names(fitparams)[!grepl('log_'), names(fitparams)]
+    for(nm in unloggedParms) assign(nm, as.numeric(fitparams[nm]))
+    for(nm in loggedParms) assign(gsub('log_', '', nm), exp(as.numeric(fitparams[nm])))
+    rm(nm, loggedParms, unloggedParms) 
+  })
+}
+
+fit_and_fixed_like = function(fit.param, fixed.params = tesetse_params(), dat = temp.fly_count){
+  parms = subsParms(fit.params, fixed.params)
+  nll.pois(parms, dat = dat)    
+}
