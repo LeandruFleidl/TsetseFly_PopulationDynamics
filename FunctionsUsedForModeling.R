@@ -26,5 +26,5 @@ likelihood.pois = function(parms = tstetse_params(), data = temp.fly_count){
     }
     
   }
-  return(like)
+  return(-like)
 }
