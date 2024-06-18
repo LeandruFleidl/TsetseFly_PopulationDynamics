@@ -16,3 +16,4 @@ LarvipostionAsFunctionOfTime.R Reads in larviposition data and plots it along wi
 larviposition as a function of temp.
 
 PupalDurationAsAfunctionOfTime.R Reads in pupal duration data and and plots it along with the predicted pupal duration as a function of temp.
+

@@ -10,7 +10,7 @@ d.larvi.rate = read.csv("data_larviposition.csv")
 
 #2 Plot data
 larvi_plot = ggplot(d.larvi.rate, aes(x = mean_temp, y = rate, col = stage)) +
-             scale_color_manual(values = c("black", "black", "red", "red")) +
+             scale_color_manual(values = c("black", "red")) +
              xlim(low = 13, high = 33) +
              geom_point(size = 1) +
              ylim(low = 0, high=0.14) +
@@ -45,14 +45,14 @@ larvi_plot = ggplot(d.larvi.rate, aes(x = mean_temp, y = rate, col = stage)) +
  non_sub.lr = lrFunc(con.d1 = non_sub.d1, con.d2 =non_sub.d2, temp = seq(15, 34, 0.1))
  non_sub.lr = cbind.data.frame(temp = seq(15, 34, 0.1)
                               , pred = non_sub.lr
-                              , stage = rep("Non Subsequent Larvi Fit")
-                              , length(non_sub.lr))
+                              , stage = rep("First larviposition"))
+                             #, length(non_sub.lr))
  
  sub.lr = lrFunc(con.d1 = sub.d1, con.d2 = sub.d2, temp = seq(15, 34, 0.1))
  sub.lr = cbind.data.frame(temp = seq(15, 34, 0.1)
                            , pred = sub.lr
-                           , stage = rep("Subsequent Larvi Fit")
-                           , length(non_sub.lr))
+                           , stage = rep("Subsequent larvipositions"))
+                           #, length(non_sub.lr))
  prediction.lr = rbind.data.frame(non_sub.lr, sub.lr)
  
 #5 Add prediction to plot
