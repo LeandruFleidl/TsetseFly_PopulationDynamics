@@ -26,7 +26,9 @@ pupal.duration.plot
 
 #4 Set up function for pupal duration as a function of temp
 # from the ref at the top we get the constants we need 
-# c1 = 0.05884, c2 = 4.8829, c3 = -0.2159
+D.c1 = 0.05884 
+D.c2 = 4.8829
+D.c3 = -0.2159
 pdFunc = function(c1 = 0.05884, c2 = 4.8829, c3 = -0.2159, temp){
        pupal.duration = c1/(1 + exp(c2 + c3*temp))
        return(pupal.duration)

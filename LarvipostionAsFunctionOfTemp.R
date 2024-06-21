@@ -14,17 +14,18 @@ larvi_plot = ggplot(d.larvi.rate, aes(x = mean_temp, y = rate, col = stage)) +
              xlim(low = 13, high = 33) +
              geom_point(size = 1) +
              ylim(low = 0, high=0.14) +
-             labs(y = "Larvi Rate", x = "Mean Temp,", title = "Larvipostion Rate") +
+             labs(y = "Larvi Rate", x = "Mean Temp", title = "Larvipostion Rate") +
              theme_set(theme_bw()) +
              theme(panel.border = element_blank()
-                   ,plot.title = element_text(hjust = 0.5)
+                   , plot.title = element_text(hjust = 0.5)
                    , axis.line = element_line(color = "black")
                    , legend.position = c(0.9, 0.1)
                    , legend.title = element_blank()
                    , legend.background = element_blank()
+                   , legend.text = element_text(size = 6)
                    , legend.key.size = unit(0.5, "line")
-                   , legend.text = element_text(size = 4.5)
                    , legend.key.height = unit(0.4, "line")
+                   , plot.margin = unit(c(0.4, 0.2, 0.2, 0.1), "cm")
                   )
  larvi_plot
   
@@ -61,4 +62,5 @@ larvi_plot = ggplot(d.larvi.rate, aes(x = mean_temp, y = rate, col = stage)) +
    geom_line(data=prediction.lr
              ,mapping=aes(x=temp,y=pred))
  lrPlotFit
+ 
  

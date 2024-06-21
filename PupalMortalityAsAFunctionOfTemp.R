@@ -54,15 +54,15 @@ pmfsum = summary(pupal.mortalityFit)
 pmfsum
 
 #8 Save coefficients for use in time dependent function
-b1 = coef(pmfsum)[1]
-b2 = coef(pmfsum)[2]
-b3 = coef(pmfsum)[3]
-b4 = coef(pmfsum)[4]
-b5 = coef(pmfsum)[5]
+M.b1 = coef(pmfsum)[1]
+M.b2 = coef(pmfsum)[2]
+M.b3 = coef(pmfsum)[3]
+M.b4 = coef(pmfsum)[4]
+M.b5 = coef(pmfsum)[5]
 
 #9 Calculate the predicted values
-pupal.mortality.pred = pmFunc(b1 = b1, b2 = b2, b3 = b3
-                            , b4 = b4, b5 = b5, temp = seq(14, 35, 0.1))
+pupal.mortality.pred = pmFunc(b1 = M.b1, b2 = M.b2, b3 = M.b3
+                            , b4 = M.b4, b5 = M.b5, temp = seq(14, 35, 0.1))
 pupal.mortality.pred = cbind.data.frame(temp = seq(14, 35, 0.1), pred = pupal.mortality.pred)
 
 #10 Add predicted values to plot

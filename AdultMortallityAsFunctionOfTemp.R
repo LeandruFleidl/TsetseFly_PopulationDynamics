@@ -17,9 +17,10 @@ aMortplot = ggplot(b.A_mortality, aes(x = mean_temp, y = mortality) ) +
                                  geom_point(size = 1) +
                                  labs( y = "Adult Mortality Rate/day"
                                       , x = "Mean Temperature"
-                                      , title = "Adult Mortality compared to Mean Temperature")
+                                      , title = "Adult Mortality") +
                                  theme_set(theme_bw()) +
                                  theme(panel.border = element_blank()
+                                        , plot.title = element_text(size = 14, hjust = 0.5)
                                         , axis.line = element_line(colour = 'black')
                                         , text = element_text(size = 6)
                                         , plot.margin = unit(c(0.4, 0.2, 0.2, 0.1), "cm")
@@ -55,13 +56,13 @@ adult_mortalityFit = nls.lm(par = c(a1 = 0.01, a2 = 0.06),  fn = amFunctFit)
 
 #5 Store the paramaters we found for later use
 amParams = summary(adult_mortalityFit)
-a1 = coef(adult_mortalityFit)[1]
-a2 = coef(adult_mortalityFit)[2]
+A.a1 = coef(adult_mortalityFit)[1]
+A.a2 = coef(adult_mortalityFit)[2]
 
 #6 Now we put the predicted values of the mortality into a data frame
 adult_mortality.Predicted = sapply(seq(15, 34, 0.01), function(x){
-                                          adult_mortalityFunc(con.a1 = a1
-                                                              ,con.a2 = a2
+                                          adult_mortalityFunc(con.a1 = A.a1
+                                                              ,con.a2 = A.a2
                                                               ,x)
                                                         })
 adult_mortality.Predicted = cbind.data.frame(temp = seq(15, 34, 0.01), 
