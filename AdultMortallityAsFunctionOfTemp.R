@@ -15,14 +15,14 @@ b.A_mortality = read.csv("data_adult_mort.csv")
 aMortplot = ggplot(b.A_mortality, aes(x = mean_temp, y = mortality) ) +
                                  xlim(low = 15, high = 35) +
                                  geom_point(size = 1) +
-                                 labs( y = "Adult Mortality Rate/day"
-                                      , x = "Mean Temperature"
+                                 labs( y = "Adult Mortality Rate (per day)"
+                                      , x = "Mean Temperature (\u00B0C)"
                                       , title = "Adult Mortality") +
                                  theme_set(theme_bw()) +
                                  theme(panel.border = element_blank()
                                         , plot.title = element_text(size = 14, hjust = 0.5)
                                         , axis.line = element_line(colour = 'black')
-                                        , text = element_text(size = 6)
+                                        , text = element_text(size = 10)
                                         , plot.margin = unit(c(0.4, 0.2, 0.2, 0.1), "cm")
                                         , axis.text = element_text(size = 6)
                                  )

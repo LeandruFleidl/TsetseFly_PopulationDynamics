@@ -14,7 +14,7 @@ larvi_plot = ggplot(d.larvi.rate, aes(x = mean_temp, y = rate, col = stage)) +
              xlim(low = 13, high = 33) +
              geom_point(size = 1) +
              ylim(low = 0, high=0.14) +
-             labs(y = "Larvi Rate", x = "Mean Temp", title = "Larvipostion Rate") +
+             labs(y = "Larviposition Rate (per day)", x = "Temperetature (\u00B0C)", title = "Larvipostion Rate") +
              theme_set(theme_bw()) +
              theme(panel.border = element_blank()
                    , plot.title = element_text(hjust = 0.5)

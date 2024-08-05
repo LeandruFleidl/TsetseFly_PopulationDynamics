@@ -51,7 +51,7 @@ tsetse_mod = function(tt, yy, parms) with(c(parms, as.list(yy)), {
   temp = temps[(tt/30) + 1] #Take temp for the time point in the model
   pup.dur = pdFunc(c1, c2, c3, temp = temp)
   pup.mort = pmFunc(b1, b2, b3, b4, b5, temp =temp)
-  adult.mort = amFunc(a1, a2, temp = temp)
+  adult.mort = adult_mortalityFunc(a1, a2, temp = temp)
   larvi.par = lrFunc(d3, d4, temp = temp)
   larvi.non = lrFunc(d1, d2, temp = temp)
   
@@ -66,7 +66,7 @@ tsetse_mod = function(tt, yy, parms) with(c(parms, as.list(yy)), {
 })
 
 # 3 Function to Simulate model
-simPop = function(init = initial, tseq = times, modFunction = tsetse_mod(), parms = tsetse_params()){
+simPop = function(init = initial, tseq = times, modFunction = tsetse_mod, parms = tsetse_params()){
   simDat = as.data.frame(lsoda(init, tseq, modFunction, parms = parms))
   return(simDat)
 }
@@ -74,20 +74,41 @@ simPop = function(init = initial, tseq = times, modFunction = tsetse_mod(), parm
 test = simPop(parms = tsetse_params(mud.p = 0.00006))
 
 temp.fly_count$A = test$A + test$J
-plot.dat = temp.fly_count[65:length(temp.fly_count$time)]
+plot.dat = temp.fly_count
 
-gplot(plot.dat, aes(x=time,y=count)) +                                   # plot
+ggplot(plot.dat, aes(x=time,y=count)) +                                   # plot
   geom_line(mapping=aes(x=time,y=A),size=0.2,col="black") +
   geom_point(size=0.4,col="red") +
-  labs( y= "Numbers of tsetse"
-        , x="Date") + 
+  labs( y = "Numbers of tsetse flies"
+        , x="Date"
+        , title = "First Attempt") + 
   scale_x_yearmon(
     limits = as.yearmon(c('1960-02','2017-12'))) +
   scale_y_continuous(trans='log10',limits=c(0.1, high=200)) +
   theme_set(theme_bw()) +
   theme( panel.border = element_blank()
-         ,axis.line = element_line(color = 'black')
-         ,text=element_text(size=7)
-         ,plot.margin=unit(c(0.3,0.7,0.3,0.2), "cm")
-         ,axis.text=element_text(size=6)
+         , axis.line = element_line(color = 'black')
+         , plot.title = element_text(size = 14, hjust = 0.5)
+         , text = element_text(size = 10)
+         , plot.margin=unit(c(0.3,0.7,0.3,0.2), "cm")
+         , axis.text=element_text(size=6)
   )
+
+# Just population
+ggplot(plot.dat, aes(x=time,y=count)) +                                   # plot
+  geom_point(size=0.4,col="red") +
+  labs( y = "Numbers of tsetse flies"
+        , x="Date"
+        , title = "Tsetse fly population over time") + 
+  scale_x_yearmon(
+    limits = as.yearmon(c('1991-02','2017-12'))) +
+  scale_y_continuous(trans='log10',limits=c(0.1, high=200)) +
+  theme_set(theme_bw()) +
+  theme( panel.border = element_blank()
+         , axis.line = element_line(color = 'black')
+         , plot.title = element_text(size = 14, hjust = 0.5)
+         , text = element_text(size = 10)
+         , plot.margin=unit(c(0.3,0.7,0.3,0.2), "cm")
+         , axis.text=element_text(size=6)
+  )
+

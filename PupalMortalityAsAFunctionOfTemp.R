@@ -26,14 +26,14 @@ pupal.mortalityPlot = ggplot(d.pupal.mortality, aes(x = temp, y = instant.mort))
                       xlim(low = 14, high = 35) +
                       geom_point(size = 1) +
                       ylim(low = 0, high = 0.06) +
-                      labs(x = "Temperature", 
-                           y = "Pupal Mortality", 
-                           title = "Pupal Mortality at a certain temp") +
+                      labs(x = "Temperature (\u00B0C)", 
+                           y = "Pupal Mortality (per day)", 
+                           title = "Pupal Mortality") +
                       theme_set(theme_bw()) +
                       theme(panel.border = element_blank()
-                          ,plot.title = element_text(size = 10, hjust = 0.5)
+                          ,plot.title = element_text(size = 14, hjust = 0.5)
                           , axis.line = element_line(color = "black")
-                          , text = element_text(size = 6)
+                          , text = element_text(size = 10)
                           , plot.margin = unit(c(0.4, 0.2, 0.2, 0.1), "cm")
                           , axis.text = element_text(size = 8))
 pupal.mortalityPlot
@@ -70,3 +70,4 @@ predPlot = pupal.mortalityPlot +
           geom_line(data = pupal.mortality.pred
                   , mapping = aes(x = temp, y = pred))
 predPlot
+

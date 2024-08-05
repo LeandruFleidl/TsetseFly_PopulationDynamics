@@ -13,9 +13,9 @@ pupal.duration.plot = ggplot(data = pupal.duration.data, aes(x = test_temp, y = 
                        xlim(low = 15, high = 35) +
                        ylim(low = 0, high = 0.06) +
                        geom_point(size = 1) +
-                       labs(y = "Pupal Duration"
-                           ,x = "Temperature"
-                           ,title = "Pupal emergence rate (per day)") +
+                       labs(y = "Pupal Duration (per day)"
+                           ,x = "Temperature (\u00B0C)"
+                           ,title = "Pupal emergence rate") +
                        theme_set(theme_bw()) +
                        theme(panel.border = element_blank()
                              , plot.title = element_text(hjust = 0.5)
@@ -42,3 +42,4 @@ pdPred = cbind.data.frame(temp = seq(14, 35, 0.1), pdPred = pdPred)
 predicted.pd.plot = pupal.duration.plot +
                   geom_line(data = pdPred, mapping = aes(x = temp, y = pdPred))
 predicted.pd.plot
+
