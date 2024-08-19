@@ -81,7 +81,7 @@ ggplot(plot.dat, aes(x=time,y=count)) +                                   # plot
   geom_point(size=0.4,col="red") +
   labs( y = "Numbers of tsetse flies"
         , x="Date"
-        , title = "First Attempt") + 
+        , title = "First Attempt at Modeling Tsetse fly population dynamics") + 
   scale_x_yearmon(
     limits = as.yearmon(c('1960-02','2017-12'))) +
   scale_y_continuous(trans='log10',limits=c(0.1, high=200)) +

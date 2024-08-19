@@ -33,8 +33,3 @@ temp.fly_count = rbind.data.frame(temp.fly_count[13:24,],
                                   temp.fly_count[13:24,],
                                   temp.fly_count )
 
-tempPlot = ggplot(data = temp.fly_count, mapping = aes(x = temp.fly_count$time, 
-                                                       y = temp.fly_count$temp)
-                  , geom_line(data = temp.fly_count, mapping = aes(x = temp.fly_count$time, 
-                                                                  y = temp.fly_count$temp)))
-tempPlot
