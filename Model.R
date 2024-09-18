@@ -14,7 +14,7 @@ source("FunctionsUsedForModeling.R")
 source("LarvipostionAsFunctionOfTemp.R")
 source("PupalDurationAsAFunctionOfTemp.R")
 source("PupalMortalityAsAFunctionOfTemp.R")
-source("FunctionsUsedForModeling.R")
+source("flippen_hell.R")
 # 1 Model Parameters and Conditions
   # Mean temp for each month see CountAndTemp
 temps = temp.fly_count$temp[1:length(temp.fly_count$temp)] 
@@ -111,4 +111,3 @@ ggplot(plot.dat, aes(x=time,y=count)) +                                   # plot
          , plot.margin=unit(c(0.3,0.7,0.3,0.2), "cm")
          , axis.text=element_text(size=6)
   )
-
